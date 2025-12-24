@@ -1,115 +1,283 @@
-
-* {
-   padding: 0;
-   margin: 0;
-   box-sizing: border-box;
-   font-family: "Roboto", sans-serif;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-body {
-   height: 100vh;
-   background: #fff;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+/* utama halaman */
+body{
+     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Font Halaman */
+     background: linear-gradient(135deg, #1e2a3a 0%, #2d3e50 100%); /* Warna Background utama halaman */
+     display: flex; /* Aktifkan flex */
+     justify-content: center; /* ke tengah kiri-kanan */
+     align-items: center; /* ke tengah atas-bawah */
+     min-height: 100vh; /* setinggi layar */
+     overflow: hidden; /* Sembunyikan bagian yang keluar dari area */
 }
 
-.main {
-   width: 550px;
-   background-color: #0a0f1c;
-   color: #9ca3af;
-   padding: 25px;
-   border-radius: 20px;
-   display: flex;
-   flex-direction: column;
-   gap: 25px;
-   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+/* Kotak container untuk memusatkan isi */
+.container {
+     position: relative;        /* Acuan posisi anak */
+     width: 340px;              /* Lebar kotak */
+     height: 340px;             /* Tinggi kotak */
+     display: flex;             /* Aktifkan flex (mengatur isi supaya rapi dan gampang diatur) */
+     justify-content: center;   /* Tengah kiri–kanan */
+     align-items: center;       /* Tengah atas–bawah */
 }
 
-.header {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+
+/* Elemen lingkaran yang menutupi container dan berputar */
+.circle-container {
+     position: absolute;       /* Nempel ke parent (pembungkus langsung dari elemen lain)*/ /* Patokan posisi anak absolute */
+     width: 100%;              /* Lebar sama dengan parent (pembungkus langsung dari elemen lain)*/
+     height: 100%;             /* Tinggi sama dengan parent (pembungkus langsung dari elemen lain)*/
+     animation: rotate 20s linear infinite; /* Putar terus */
 }
 
-.brand {
-   flex: 1;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 4px;
+@keyframes /*kamus(rumus) gerakan*/
+rotate {
+     from{transform: rotate(0deg);} /*awal*/
+     to{transform: rotate(360deg);} /*akhir*/
 }
 
-.logo {
-   font-size: 22px;
-   padding: 15px;
-   background: #15b7b9;
-   color: white;
-   border-radius: 10px;
+/* Batang kecil (jarum) yang diposisikan dan diputar dari tengah lingkaran */
+.bar {
+     position: absolute;              /* Lepas dari alur, nempel ke parent */
+     width: 8px;                      /* Lebar batang */
+     height: 35px;                    /* Tinggi batang */
+     background: #ffa500;           /* Warna batang */
+     border-radius: 4px;              /* Sudut dibulatkan */
+     top: 0;                          /* Nempel di atas container */
+     left: 50%;                       /* Posisi horizontal tengah */
+     transform-origin: center 170px;  /* Titik poros putar (pusat lingkaran) */
+     transition: background 0.3s ease;/* Ganti warna jadi halus */
 }
 
-.title {
-   font-size: 18px;
-   font-weight: 500;
+/* Tampilan batang saat aktif (menyala) */
+.bar.active {
+     background: linear-gradient(180deg, #ffa500, #ffa500);         /* Warna aktif */
+     box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);  /* Efek cahaya */
 }
 
-.subtitle {
-   font-size: 12px;
-   font-weight: 100;
+/* Card login (fokus utama di atas background) */
+.login-box {
+     position: relative;            /* Acuan child */
+     z-index: 10;                   /* Di atas animasi */
+     background: rgba(30, 42, 58, 0.95); /* Background card */
+     padding: 40px;                 /* Jarak isi */
+     border-radius: 20px;           /* Sudut membulat */
+     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); /* Efek mengambang */
+     width: 420px;                  /* Lebar card */
 }
 
-.toggle {
-   display: flex;
-   align-items: center;
-   gap: 6px;
-   background: rgba(255, 255, 255, 0.05);
-   border-radius: 150px;
+/* Judul utama form login */
+h2 {
+     text-align: center;          /* Tengah horizontal */
+     color: #ffa500;              /* Warna judul */
+     margin-bottom: 30px;         /* Jarak ke bawah */
+     font-size: 32px;             /* Ukuran teks */
+     font-weight: 600;            /* Tebal sedang */
+     text-transform: uppercase;   /* Huruf besar semua */
+     letter-spacing: 2px;         /* Spasi antar huruf */
 }
 
-.btn {
-   padding: 8px 12px;
-   border-radius: 50px;
-   font-size: 14px;
-   font-weight: 600;
-   cursor: pointer;
+/* Wadah input (mengatur jarak antar input) */
+.input-group {
+     position: relative;      /* Jadi patokan untuk elemen anak (misal ikon) */
+     margin-bottom: 25px;     /* Jarak ke input berikutnya */
 }
 
-.activeToggle {
-   color: #15b7b9;
+/* Input teks email / password di dalam input-group */
+.input-group input {
+     width: 100%;             /* Lebar penuh parent (.input-group) */
+     padding: 12px 40px 12px 15px; /* Ruang dalam input (atas, kanan, bawah, kiri) */
+     background: rgba(255, 255, 255, 0.1); /* Warna latar lembut */
+     border: 1px solid rgba(255, 255, 255, 0.2); /* Border tipis */
+     border-radius: 25px;     /* Sudut input membulat */
+     color: #fff;             /* Warna teks */
+     font-size: 14px;         /* Ukuran teks */
+     outline: none;           /* Hilangkan outline default saat fokus */
+     transition: all 0.3s ease; /* Animasi halus untuk perubahan gaya */
 }
 
-.display {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+/* Input saat sedang fokus (aktif diketik) */
+.input-group input:focus {
+     border-color: #ffa500;                         /* Border berubah warna menonjol */
+     box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);  /* Efek cahaya lembut saat fokus */
 }
 
-.time-wrap {
-   display: flex;
-   align-items: baseline;
+/* Placeholder teks dalam input */
+.input-group input::placeholder {
+     color: rgba(255, 255, 255, 0.5);              /* Warna teks placeholder lebih lembut */
 }
 
-.time {
-   font-size: 65px;
-   color: white;
-   font-weight: 600;
-   letter-spacing: 7px;
+/* Ikon di dalam input, misal email/password */
+.input-icon {
+     position: absolute;                                /* Nempel ke container parent */
+     right: 15px;                                      /* Posisi kanan input */
+     top: 50%;                                         /* Tengah vertikal */
+     transform: translateY(-50%);                     /* Koreksi agar benar-benar tengah */
+     color: rgba(255, 255, 255, 0.5);                /* Warna ikon lembut */
+     font-size: 16px;                                 /* Ukuran ikon */
 }
 
-.am {
-   font-size: 18px;
+/* Container link lupa password */
+.forget-password {
+  text-align: right;       /* Tempatkan link di kanan */
+  margin-top: -15px;       /* Geser sedikit ke atas untuk rapih */
+  margin-bottom: 25px;     /* Jarak ke elemen berikutnya */
 }
 
-.meta {
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
-   text-align: end;
+/* Style link lupa password */
+.forget-password a {
+  color: rgba(255, 255, 255, 0.6); /* Warna teks lembut */
+  text-decoration: none;            /* Hilangkan garis bawah */
+  font-size: 12px;                  /* Ukuran teks kecil */
+  transition: color 0.3s ease;      /* Perubahan warna halus saat hover */
 }
 
-.foot {
-   display: flex;
-   justify-content: space-between;
-   font-size: 12px;
+/* Hover (tombol warna saat di sentuh / intraksi mouse) link lupa password */
+.forget-password a:hover {
+  color: #ffa500;           /* Warna berubah menonjol saat hover */
 }
 
+/* ============================= */
+/* TOMBOL LOGIN                  */
+/* ============================= */
+
+/* Style utama tombol login */
+.login-btn {
+  width: 100%;                                    /* Lebar penuh container */
+  padding: 14px;                                  /* Ruang dalam tombol */
+  background: linear-gradient(90deg, #ffa500, #ff8c00); /* Gradient horizontal */
+  border: none;                                   /* Hilangkan border default */
+  border-radius: 25px;                            /* Sudut membulat */
+  color: #fff;                                    /* Warna teks */
+  font-size: 16px;                                /* Ukuran teks */
+  font-weight: 600;                               /* Tebal teks */
+  text-transform: uppercase;                      /* Huruf besar semua */
+  letter-spacing: pointer;                        /* ❌ TYPO: seharusnya number */
+  cursor: pointer;                                /* Pointer saat hover */
+  position: relative;                             /* Acuan untuk pseudo-element */
+  overflow: hidden;                               /* Sembunyikan elemen keluar tombol */
+  transition: all 0.3s ease;                     /* Transisi halus semua properti */
+}
+
+/* Efek hover tombol */
+.login-btn:hover {
+   transform: translateY(-2px);                  /* Tombol naik sedikit */
+   box-shadow: 0 10px 30px rgba(255, 165, 0, 0.5); /* Efek cahaya */
+}
+
+/* Ripple / efek animasi saat klik (pseudo-element) */
+.login-btn::before {
+   content:"";                                    /* Elemen kosong untuk efek */
+   position: absolute;                            /* Nempel ke tombol */
+   top: 50%;                                      /* Tengah vertikal */
+   left: 50%;                                     /* Tengah horizontal */
+   width: 0;                                      /* Awal ukuran 0 */
+   height: 0;
+   border-radius: 50%;                            /* Bulat sempurna */
+   background: rgba(255, 255, 255, 0.3);         /* Warna ripple lembut */
+   transform: translate(-50%, -50%);             /* Tepat di tengah */
+   transition: width 0.6s ease, height 0.6s ease; /* Animasi membesar */
+}
+
+/* Saat tombol ditekan (active) */
+.login-btn:active::before {
+  width: 300px;                                   /* Membesar horizontal */
+  height: 300px;                                  /* Membesar vertikal */
+}
+
+/* ============================= */
+/* SOCIAL LOGIN SECTION          */
+/* ============================= */
+
+/* Container sosial login */
+.social-login {
+  margin-top: 25px;            /* Jarak dari elemen di atas */
+  text-align: center;           /* Tengah horizontal */
+}
+
+/* Teks info / ajakan sosial login */
+.social-login p {
+  color: rgba(255, 255, 255, 0.6); /* Warna teks lembut */
+  font-size: 16px;                  /* Ukuran teks */
+  margin-bottom: 15px;              /* Jarak ke ikon */
+}
+
+/* Wrapper ikon sosial */
+.social-icons{
+  display: flex;               /* Menyusun ikon secara horizontal */
+  justify-content: center;     /* Tengah horizontal */
+  gap: 15px;                   /* Jarak antar ikon */
+}
+
+/* Style masing-masing ikon sosial */
+.social-icon {
+  width: 40px;                 /* Lebar ikon */
+  height: 40px;                /* Tinggi ikon */
+  border-radius: 50%;          /* Bentuk lingkaran */
+  display: flex;               
+  justify-content: center;     /* Tengah horizontal isi */
+  align-items: center;         /* Tengah vertikal isi */
+  cursor: pointer;             /* Pointer saat hover */
+  transition: all 0.3s ease;  /* Transisi halus saat hover */
+  font-size: 18px;             /* Ukuran ikon/font */
+  color: #fff;                 /* Warna ikon */
+}
+
+/* Ikon Facebook */
+.social-icon.facebook {
+  background: #3b5998;         /* Warna khas Facebook */
+}
+
+/* Ikon Twitter */
+.social-icon.twitter {
+  background: #000;            /* Warna hitam / Twitter */
+}
+
+/* Ikon Google */
+.social-icon.google {
+  background: #db4437;         /* Warna khas Google */
+}
+
+/* Hover efek semua ikon sosial */
+.social-icon:hover {
+  transform: translateY(-5px) scale(1.1);       /* Naik sedikit dan membesar */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);  /* Efek bayangan */
+}
+
+/* ============================= */
+/* SIGNUP LINK                   */
+/* ============================= */
+
+/* Container link signup */
+.signup-link {
+  text-align: center;          /* Tengah horizontal */
+  margin-top: 25px;            /* Jarak dari elemen di atas */
+}
+
+/* Style link signup */
+.signup-link a {
+  color: #ffa500;              /* Warna teks */
+  text-decoration: none;       /* Hilangkan garis bawah */
+  font-size: 14px;             /* Ukuran teks */
+  font-weight: 600;            /* Tebal teks */
+  transition: color 0.3s ease; /* Transisi warna halus */
+}
+
+/* Hover link signup */
+.signup-link a:hover {
+  color: #ff8c00;              /* Warna lebih menonjol */
+  text-decoration: underline;  /* Garis bawah saat hover */
+}
+
+/* ============================= */
+/* TOGGLE PASSWORD ICON          */
+/* ============================= */
+
+/* Ikon untuk menampilkan / menyembunyikan password */
+.toggle-password {
+  cursor: pointer;             /* Pointer saat hover */
+}

@@ -1,54 +1,82 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Digital Clock</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8"> <!-- Set encoding UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive di HP -->
+    <title>Animated Login Form || mmmhpd_s</title> <!-- Judul halaman -->
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- CSS utama -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
+     <!-- ============================= -->
+     <!-- CONTAINER UTAMA               -->
+     <!-- ============================= -->
+     <div class="container">
+         <!-- Lingkaran animasi (background dekoratif) -->
+         <div class="circle-container" id="circleContainer"></div>
+         
+         <!-- Kotak login utama -->
+         <div class="login-box">
+              <!-- Judul form login -->
+              <h2>Login</h2>
 
-  <div class="main">
+              <!-- Form login -->
+              <form action="" id="LoginForm">
+                  
+                  <!-- Input Email -->
+                  <div class="input-group">
+                    <input type="email" placeholder="Email" required>
+                    <!-- Ikon email -->
+                    <span class="input-icon">
+                      <i class="fa-solid fa-envelope"></i>
+                    </span>
+                  </div>
 
-    <!-- HEADER -->
-    <header class="header">
-      <div class="logo">MS</div>
+                  <!-- Input Password -->
+                  <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                    <!-- Ikon password -->
+                    <span class="input-icon">
+                      <i class="fa-solid fa-lock"></i>
+                    </span>
+                  </div>
 
-      <div class="brand">
-        <div class="title">Digital Clock</div>
-        <div class="subtitle">12/24 hour • Local time</div>
-      </div>
+                  <!-- Link lupa password -->
+                  <div class="forget-password">
+                       <a href="#">Forget Your Password ?</a>
+                  </div>
 
-      <div class="toggle">
-        <div class="activeToggle">12 hr</div>
-        <div class="btn">24 hr</div>
-      </div>
-    </header>
+                  <!-- Tombol login -->
+                  <button type="submit" class="login-btn">LOGIN</button>
+              </form>
+              
+              <!-- ============================= -->
+              <!-- SOCIAL LOGIN SECTION          -->
+              <!-- ============================= -->
+              <div class="social-login">
+                  <!-- Teks info sosial login -->
+                  <p>log in with</p>
+                  
+                  <!-- Wrapper ikon sosial -->
+                  <div class="social-icons">
+                      <!-- Facebook -->
+                      <div class="social-icon facebook">F</div>
+                      <!-- Twitter -->
+                      <div class="social-icon twitter">X</div>
+                      <!-- Google -->
+                      <div class="social-icon google">G</div>
+                  </div>
 
-    <!-- DISPLAY -->
-    <section class="display">
+                  <!-- Link signup -->
+                  <div class="signup-link">
+                      <a href="#">Sign Up</a>
+                  </div>
+              </div> <!-- tutup social-login -->
 
-      <div class="time-wrap">
-        <span class="time" id="time">00:00:00</span>
-        <span class="am" id="ampm">AM</span>
-      </div>
-
-      <div class="meta">
-        <span class="date" id="date">January 1 2026</span>
-        <span class="en-US" id="en-US">Thursday</span>
-      </div>
-
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="foot">
-      <span>Local time Auto updates every second</span>
-    </footer>
-
-  </div>
-<script src="script.js"></script>
+         </div> <!-- tutup login-box -->
+     </div> <!-- tutup container -->
 </body>
-
-
+<script src="script.js"></script>
+</html>
